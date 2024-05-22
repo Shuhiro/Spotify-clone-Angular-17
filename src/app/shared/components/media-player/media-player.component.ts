@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
+import { TrackModel } from '@core/models/tracks.module';
 
 @Component({
   selector: 'app-media-player',
@@ -10,10 +11,12 @@ import { Component, NgModule, OnInit } from '@angular/core';
 })
 export class MediaPlayerComponent implements OnInit {
 
-  mockCover:any = {
-    cover:'',
+  mockCover:TrackModel = {
+    cover:'https://i.scdn.co/image/ab67616d0000b27345ca41b0d2352242c7c9d4bc',
     album:'Gioli & Assia',
-    name:'BEBE (OFICIAL)'
+    name:'BEBE (OFICIAL)',
+    url:'http://localhost/track.mp3',
+    _id: 1
   }
 
   ngOnInit(): void {

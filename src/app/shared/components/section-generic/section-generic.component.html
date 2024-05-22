@@ -3,10 +3,9 @@
 
     <div class="section--generic__player--zone">
         <ul class="player--list" [ngClass]="{'card-small':mode === 'small','card-big':mode === 'big'}">
-            @for(player of dataTracks; track player.id){
+            @for(player of dataTracks; track player._id){
             <li>
-                {{player.name}}
-                <!-- <app-card-player [track]="track" [mode]="mode"></app-card-player> -->
+                <app-card-player [mode]="mode" [track]="player"></app-card-player>
             </li>
             }
         </ul>
