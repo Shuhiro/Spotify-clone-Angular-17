@@ -1,6 +1,7 @@
+import { query } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -18,6 +19,8 @@ export class SideBarComponent implements OnInit{
 
   customOptions:Array<any>=[];
 
+  private _router = inject(Router);
+
   ngOnInit(): void {
     this.mainMenu.defaultlOption = [
       {
@@ -33,7 +36,8 @@ export class SideBarComponent implements OnInit{
       {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
-        router: ['/','favorities']
+        router: ['/','favorites'],
+        query:{hola:'mundo'}
       }
     ]
     
@@ -68,4 +72,13 @@ export class SideBarComponent implements OnInit{
     ]
   }
 
+  goTo($event: any):void{
+    this._router.navigate(['/','favorites'],{queryParams:{
+      key1:'value1',
+      key2:'value2',
+      key3:'value3'
+    }})
+    console.log($event);
+    
+  }
 }
