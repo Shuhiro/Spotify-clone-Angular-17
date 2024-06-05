@@ -2,6 +2,7 @@ import { query } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-side-bar',
@@ -26,7 +27,7 @@ export class SideBarComponent implements OnInit{
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/']
+        router: ['/','auth']
       },
       {
         name: 'Buscar',

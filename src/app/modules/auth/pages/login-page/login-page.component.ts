@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,6 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginPageComponent  implements OnInit{
   
+  private authService = inject(AuthService);
 
   formlogin: FormGroup = new FormGroup({});
   
@@ -29,8 +31,8 @@ export class LoginPageComponent  implements OnInit{
   }
 
   sendLogin():void{
-    const body = this.formlogin.value;
-    console.log('*****',body);
+    const {email, password} = this.formlogin.value;
+    this.authService.sendCredentials(email,password);
     
   }
 }
