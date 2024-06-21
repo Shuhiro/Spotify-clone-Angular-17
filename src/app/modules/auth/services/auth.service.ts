@@ -9,6 +9,5 @@ export class AuthService {
 
   sendCredentials(email:String,pasword:string){
     console.log(email,pasword);
-    
   }
 }
