@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import * as dataRaw from '../../../../data/tracks.json';
 import { TrackModel } from '@core/models/tracks.module';
+import { TrackService } from '@modules/tracks/services/track.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tracks-page',
@@ -11,13 +13,34 @@ import { TrackModel } from '@core/models/tracks.module';
   templateUrl: './tracks-page.component.html',
   styleUrl: './tracks-page.component.css'
 })
-export class TracksPageComponent implements OnInit {
+export class TracksPageComponent implements OnInit, OnDestroy {
 
-  mockTrackList:Array<TrackModel> = [
-  ]
+  tracksTrending:Array<TrackModel> = [];
+  tracksRandom:Array<TrackModel> = [];
+
+  listObserver$: Array<Subscription> = [];
+
+  private trackService = inject(TrackService);
 
   ngOnInit(): void {
-    const {data}:any = (dataRaw as any).default;
-    this.mockTrackList = data;
+
+    const observer1$= this.trackService.dataTracksTrending$.subscribe(response => {
+      this.tracksTrending = response;
+      this.tracksRandom = response;
+      console.log('Canciones trending------>', response);
+      
+    })
+    /* const observer2$= this.trackService.dataTracksRandom$.subscribe(response => {
+      this.tracksRandom = [... this.tracksRandom,... response];
+      console.log('Canciones Random entrando------>', response);
+      
+    }) */
+
+    this.listObserver$ = [observer1$];
+
+  }
+
+  ngOnDestroy(): void {
+    this.listObserver$.forEach(u => u.unsubscribe());
   }
 }
