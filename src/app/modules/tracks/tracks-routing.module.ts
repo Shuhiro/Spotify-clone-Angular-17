@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -11,8 +11,5 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [HttpClientModule,RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
+@NgModule({ exports: [RouterModule], imports: [RouterModule.forChild(routes)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class TracksRoutingModule { }
