@@ -18,7 +18,7 @@ export class ImgBrokenDirective {
   //Host
 
   constructor(private elHost:ElementRef) { 
-    console.log(this.elHost);
+    //console.log(this.elHost);
     
   }
 

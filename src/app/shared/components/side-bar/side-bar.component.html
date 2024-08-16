@@ -1,7 +1,7 @@
 <div class="side-bar">
     <div><i class="uil uil-ellipsis-h"></i></div>
     <ul class="side-bar__list list-one">
-        @for(item of mainMenu.defaultlOption; track item.id){
+        @for(item of mainMenu.defaultlOption; track item.name){
         <li [routerLink]="item.router" [queryParams]="item.query">
             <div class="list-wrapper-item">
                 <i [ngClass]="['uil',item.icon]"></i>
@@ -12,7 +12,7 @@
     </ul>
     <div class="side-bar__separator"></div>
     <ul class="side-bar__list list-two">
-        @for(item of mainMenu.accessLink; track item.id){
+        @for(item of mainMenu.accessLink; track item.name){
         <li >
             <div class="list-wrapper-item">
                 <i [ngClass]="['uil',item.icon]"></i>
@@ -23,7 +23,7 @@
     </ul>
     <div class="side-bar__separator line-separator"></div>
     <ul class="side-bar__list list-three">
-        @for(item of customOptions; track item.id){
+        @for(item of customOptions; track item.name){
         <li>
             <div class="list-wrapper-item">
                 <span class="side-bar__list list-label">{{item.name}}</span>
