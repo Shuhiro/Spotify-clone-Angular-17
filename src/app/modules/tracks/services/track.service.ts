@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { catchError, map, mergeMap, Observable, of, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TrackModel } from '@core/models/tracks.module';
 
