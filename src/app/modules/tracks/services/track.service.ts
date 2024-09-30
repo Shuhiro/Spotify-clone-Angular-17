@@ -60,7 +60,7 @@ export class TrackService {
         return dataRevertida.filter((track:TrackModel)=> track._id != 1)
       } ) */ //FILTRO PARA EVITAR QUE APARESTA EL TRACK DE ID 1
       //hacer un consolelog
-      tap(data => console.log('↓↓↓', data)),
+      //tap(data => console.log('↓↓↓', data)),
       catchError((err)=>{
         const {status,statusText}= err
         console.log("Algo paso Revisame",[err.status,err.statusText]);
